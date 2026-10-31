@@ -1,0 +1,187 @@
+/* ========================================
+   XSCR - Minimal Utilitarian Stylesheet
+   ======================================== */
+
+/* ---- Design Tokens ---- */
+:root {
+  /* Colors */
+  --bg: #0a0a0a;
+  --bg-elevated: #111;
+  --bg-hover: #1a1a1a;
+  
+  --fg: #e0e0e0;
+  --fg-dim: #888;
+  --fg-muted: #555;
+  
+  --accent: #00d4aa;
+  --accent-hover: #00e8bb;
+  
+  --border: #222;
+  --border-hover: #333;
+  
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'Fira Code', Monaco, Consolas, monospace;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  
+  /* Layout */
+  --container-max: 720px;
+  --header-h: 3.5rem;
+  
+  /* Transitions */
+  --trans: 150ms ease;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header (full width) ---- */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-h);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+header > div {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+
+/* ---- Main Content ---- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-12);
+}
+
+section { margin-bottom: var(--space-10); }
+section:last-child { margin-bottom: 0; }
+
+/* ---- Section Header ---- */
+section > h1 {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- Link List ---- */
+section > div { display: flex; flex-direction: column; gap: var(--space-2); }
+
+section > div > a {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--trans), border-color var(--trans), color var(--trans);
+}
+
+section > div > a:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+  color: var(--accent);
+}
+
+section > div > a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ---- Footer ---- */
+footer {
+  padding: var(--space-6) var(--space-5);
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+footer > div {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+footer a { color: var(--fg-dim); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
+
+/* ---- Selection ---- */
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  :root { --text-xl: 1.25rem; --text-lg: 1rem; }
+  main { padding: var(--space-6) var(--space-4) var(--space-8); }
+  header > div { padding: 0 var(--space-4); }
+  section > div > a { padding: var(--space-2) var(--space-3); }
+}
